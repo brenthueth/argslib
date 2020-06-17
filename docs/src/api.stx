@@ -1,0 +1,80 @@
+---
+title: API Reference
+---
+
+::: insert toc
+::: hr
+
+
+### Setup
+
+
+[[ `args.ArgParser(helptext=None, version=None)` ]]
+
+    Initializes a new `ArgParser` instance. Supplying help text activates an automatic `--help` flag; supplying a version string activates an automatic `--version` flag. (Automatic `-h` and `-v` shortcuts are also activated unless registered by other options.)
+
+[[ `.parse()` ]]
+
+    Parses the application's command line arguments.
+
+
+
+### Flags and Options
+
+[[ `.flag(name)` ]]
+
+    Registers a new flag. The `name` parameter accepts an unlimited number of space-separated aliases and single-character shortcuts.
+
+[[ `.option(name, type=str, default=None)` ]]
+
+    Registers a new option. The `name` parameter accepts an unlimited number of space-separated aliases and single-character shortcuts. Options are string-valued by default but the `type` parameter can be changed to `int`, `float`, or any other callable which can parse a string value.
+    A default value can be specified which will be used if the option is not found.
+
+
+
+### Retrieving Values
+
+[[  `.count(name)`  ]]
+
+    Returns the number of times the specified flag or option was found.
+
+
+[[  `.found(name)`  ]]
+
+    Returns `True` if the specified flag or option was found, `False` if not.
+
+
+[[  `.value(name)`  ]]
+
+    Returns the value of the specified option. Returns the default value if the option was not found. (Not valid for flags.)
+
+
+[[  `.values(name)`  ]]
+
+    Returns the specified option's list of values. (Not valid for flags.)
+
+
+
+### Positional Arguments
+
+[[ `.args` ]]
+
+    Stores the positional arguments as a list of strings.
+
+
+
+### Commands
+
+[[ `.command(name, helptext=None, callback=None)` ]]
+
+    Registers a new command. The `name` parameter accepts an unlimited number of space-separated aliases. Returns the command's `ArgParser` instance which can be used to register the command's flags and options.
+    If the command is found, the `callback` function will be called with the command's name and `ArgParser` instance as arguments.
+
+[[ `.command_name` ]]
+
+    Stores the command name if a command was found, otherwise `None`.
+
+[[ `.command_parser` ]]
+
+    Stores the command parser if a command was found, otherwise `None`.
+

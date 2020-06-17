@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>API Reference</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="graphite.css">
+    <link rel="stylesheet" href="pygments.css">
+    
+    
+  </head>
+
+  <body class="node-api node">
+
+    <header class="masthead">
+      <h1><a href="index.html">Argslib</a></h1>
+      
+        <p class="tagline">An argument-parsing library for Python.</p>
+      
+      
+      <nav class="menu">
+        <input id="menu-check" type="checkbox"/>
+        <label id="menu-label" for="menu-check" class="unselectable">
+          <span class="icon close-icon">✕</span>
+          <span class="icon open-icon">☰</span>
+          <span class="text">Menu</span>
+        </label>
+        <ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="quickstart.html">Quickstart</a></li>
+<li><a href="cli.html">CLI</a></li>
+<li><a href="api.html">API</a></li>
+<li><a href="https://github.com/dmulholl/argslib">Source</a></li>
+</ul>
+      </nav>
+    </header>
+
+    <article class="main">
+      <header class="title">
+        <h1>API Reference</h1>
+        
+        <hr>
+      </header>
+      <ul class="stx-toc">
+<li>
+<a href="#setup">Setup</a>
+</li>
+<li>
+<a href="#flags-and-options">Flags and Options</a>
+</li>
+<li>
+<a href="#retrieving-values">Retrieving Values</a>
+</li>
+<li>
+<a href="#positional-arguments">Positional Arguments</a>
+</li>
+<li>
+<a href="#commands">Commands</a>
+</li>
+</ul>
+<hr>
+<h3 id="setup">
+Setup
+</h3>
+<dl>
+<div>
+<dt>
+<code>args.ArgParser(helptext=None, version=None)</code>
+</dt>
+<dd>
+<p>
+Initializes a new <code>ArgParser</code> instance. Supplying help text activates an automatic <code>--help</code> flag; supplying a version string activates an automatic <code>--version</code> flag. (Automatic <code>-h</code> and <code>-v</code> shortcuts are also activated unless registered by other options.)
+</p>
+</dd>
+</div>
+<div>
+<dt>
+<code>.parse()</code>
+</dt>
+<dd>
+<p>
+Parses the application's command line arguments.
+</p>
+</dd>
+</div>
+</dl>
+<h3 id="flags-and-options">
+Flags and Options
+</h3>
+<dl>
+<div>
+<dt>
+<code>.flag(name)</code>
+</dt>
+<dd>
+<p>
+Registers a new flag. The <code>name</code> parameter accepts an unlimited number of space-separated aliases and single-character shortcuts.
+</p>
+</dd>
+</div>
+<div>
+<dt>
+<code>.option(name, type=str, default=None)</code>
+</dt>
+<dd>
+<p>
+Registers a new option. The <code>name</code> parameter accepts an unlimited number of space-separated aliases and single-character shortcuts. Options are string-valued by default but the <code>type</code> parameter can be changed to <code>int</code>, <code>float</code>, or any other callable which can parse a string value.
+A default value can be specified which will be used if the option is not found.
+</p>
+</dd>
+</div>
+</dl>
+<h3 id="retrieving-values">
+Retrieving Values
+</h3>
+<dl>
+<div>
+<dt>
+<code>.count(name)</code>
+</dt>
+<dd>
+<p>
+Returns the number of times the specified flag or option was found.
+</p>
+</dd>
+</div>
+<div>
+<dt>
+<code>.found(name)</code>
+</dt>
+<dd>
+<p>
+Returns <code>True</code> if the specified flag or option was found, <code>False</code> if not.
+</p>
+</dd>
+</div>
+<div>
+<dt>
+<code>.value(name)</code>
+</dt>
+<dd>
+<p>
+Returns the value of the specified option. Returns the default value if the option was not found. (Not valid for flags.)
+</p>
+</dd>
+</div>
+<div>
+<dt>
+<code>.values(name)</code>
+</dt>
+<dd>
+<p>
+Returns the specified option's list of values. (Not valid for flags.)
+</p>
+</dd>
+</div>
+</dl>
+<h3 id="positional-arguments">
+Positional Arguments
+</h3>
+<dl>
+<div>
+<dt>
+<code>.args</code>
+</dt>
+<dd>
+<p>
+Stores the positional arguments as a list of strings.
+</p>
+</dd>
+</div>
+</dl>
+<h3 id="commands">
+Commands
+</h3>
+<dl>
+<div>
+<dt>
+<code>.command(name, helptext=None, callback=None)</code>
+</dt>
+<dd>
+<p>
+Registers a new command. The <code>name</code> parameter accepts an unlimited number of space-separated aliases. Returns the command's <code>ArgParser</code> instance which can be used to register the command's flags and options.
+If the command is found, the <code>callback</code> function will be called with the command's name and <code>ArgParser</code> instance as arguments.
+</p>
+</dd>
+</div>
+<div>
+<dt>
+<code>.command_name</code>
+</dt>
+<dd>
+<p>
+Stores the command name if a command was found, otherwise <code>None</code>.
+</p>
+</dd>
+</div>
+<div>
+<dt>
+<code>.command_parser</code>
+</dt>
+<dd>
+<p>
+Stores the command parser if a command was found, otherwise <code>None</code>.
+</p>
+</dd>
+</div>
+</dl>
+    </article>
+
+    
+
+  </body>
+</html>
