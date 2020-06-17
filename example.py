@@ -11,8 +11,9 @@ def main():
     parser = args.ArgParser()
 
     # Specifying a helptext string activates an automatic --help/-h flag.
-    # Specifying a version string activates an automatic --version/-v flag.
     parser.helptext = "Usage: example..."
+
+    # Specifying a version string activates an automatic --version/-v flag.
     parser.version = "1.0"
 
     # Register a flag, --foo.
