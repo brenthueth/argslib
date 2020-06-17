@@ -31,7 +31,8 @@ That's it, we're done specifying our interface. Now we can parse the program's c
 This will exit with a suitable error message if anything goes wrong. Now we can check if the `--quiet` flag was found:
 
 ::: code python
-    be_quiet = parser.found("quiet")
+    if parser.found("quiet"):
+        do_stuff()
 
 And determine our output filepath:
 
@@ -42,4 +43,4 @@ Positional aguments are collected up in the parser's `.args` list:
 
 ::: code python
     for filename in parser.args:
-        # join the files together...
+        do_stuff()

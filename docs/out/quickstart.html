@@ -77,7 +77,8 @@ That's it, we're done specifying our interface. Now we can parse the program's c
 This will exit with a suitable error message if anything goes wrong. Now we can check if the <code>--quiet</code> flag was found:
 </p>
 <pre class="lang-python pygments" data-lang="python">
-<span class="n">be_quiet</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">found</span><span class="p">(</span><span class="s2">&quot;quiet&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">parser</span><span class="o">.</span><span class="n">found</span><span class="p">(</span><span class="s2">&quot;quiet&quot;</span><span class="p">):</span>
+    <span class="n">do_stuff</span><span class="p">()</span>
 </pre>
 <p>
 And determine our output filepath:
@@ -90,7 +91,7 @@ Positional aguments are collected up in the parser's <code>.args</code> list:
 </p>
 <pre class="lang-python pygments" data-lang="python">
 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
-    <span class="c1"># join the files together...</span>
+    <span class="n">do_stuff</span><span class="p">()</span>
 </pre>
     </article>
 
