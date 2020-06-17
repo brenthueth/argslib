@@ -16,20 +16,12 @@ def main():
     # Specifying a version string activates an automatic --version/-v flag.
     parser.version = "1.0"
 
-    # Register a flag, --foo.
-    parser.flag("foo")
+    # Register a flag, --foo, with a single-character shortcut, -f.
+    parser.flag("foo f")
 
-    # Register a string-valued option, --string <arg>, with a single-character
-    # alias, -s <arg>.
-    parser.option("string s")
-
-    # Register an integer-valued option, --int <arg>, with a single-character
-    # alias, -i <arg>.
-    parser.option("int i", type=int)
-
-    # Register a floating-point-valued option, --float <arg>, with a single-
-    # character alias, -f <arg>.
-    parser.option("float f", type=float)
+    # Register a string-valued option, --bar <arg>, with a single-character
+    # shortcut, -b <arg>.
+    parser.option("bar b")
 
     # Register a command 'boo'.
     cmd_parser = parser.command("boo", "Usage: example boo...", cmd_callback)
