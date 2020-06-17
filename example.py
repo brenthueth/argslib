@@ -7,10 +7,13 @@ import args
 
 def main():
 
-    # Instantiate an ArgParser instance. Supplying help text activates an
-    # automatic --help flag, supplying a version string activates an automatic
-    # --version flag.
-    parser = args.ArgParser("Usage: example...", "1.0")
+    # The ArgParser class is the library's public interface.
+    parser = args.ArgParser()
+
+    # Specifying a helptext string activates an automatic --help/-h flag.
+    # Specifying a version string activates an automatic --version/-v flag.
+    parser.helptext = "Usage: example..."
+    parser.version = "1.0"
 
     # Register a flag, --foo.
     parser.flag("foo")
