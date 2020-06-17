@@ -1,9 +1,7 @@
 import sys
 
 
-# Exception raised when an invalid API call is attempted. (Invalid user input
-# does not raise an exception; instead the application exits with an error
-# message.)
+# Exception raised when an invalid API call is attempted.
 class ArgParserError(Exception):
     pass
 
@@ -57,7 +55,7 @@ class ArgStream:
 # and parsing the input stream of raw arguments.
 class ArgParser:
 
-    # Specifying a string of help text activates an automatic --help flag.
+    # Specifying a helptext string activates an automatic --help flag.
     # Specifying a version string activates an automatic --version flag.
     def __init__(self, helptext=None, version=None):
 

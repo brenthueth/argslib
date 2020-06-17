@@ -7,10 +7,6 @@ A minimalist library for parsing command line arguments.
 
 """
 
-import os
-import re
-import io
-
 from setuptools import setup
 
 setup(

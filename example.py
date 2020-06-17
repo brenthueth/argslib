@@ -5,7 +5,6 @@
 
 import args
 
-
 def main():
 
     # Instantiate an ArgParser instance. Supplying help text activates an
@@ -16,17 +15,17 @@ def main():
     # Register a flag, --foo.
     parser.flag("foo")
 
-    # Register a string-valued option, --sopt <arg>, with a single-character
+    # Register a string-valued option, --string <arg>, with a single-character
     # alias, -s <arg>.
-    parser.option("sopt s")
+    parser.option("string s")
 
-    # Register an integer-valued option, --iopt <arg>, with a single-character
+    # Register an integer-valued option, --int <arg>, with a single-character
     # alias, -i <arg>.
-    parser.option("iopt i", type=int)
+    parser.option("int i", type=int)
 
-    # Register a floating-point-valued option, --fopt <arg>, with a single-
+    # Register a floating-point-valued option, --float <arg>, with a single-
     # character alias, -f <arg>.
-    parser.option("fopt f", type=float)
+    parser.option("float f", type=float)
 
     # Register a command 'boo'.
     cmd_parser = parser.command("boo", "Usage: example boo...", cmd_callback)
@@ -40,12 +39,10 @@ def main():
     parser.parse()
     print(parser)
 
-
 def cmd_callback(cmd_name, cmd_parser):
     print("------------ boo! ------------")
     print(cmd_parser)
     print("------------------------------\n")
-
 
 if __name__ == "__main__":
     main()
