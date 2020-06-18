@@ -78,3 +78,6 @@ title: API Reference
 
     Stores the command parser if a command was found, otherwise `None`.
 
+[[ `.help_command` ]]
+
+    If set to `True`, activates support for an automatic `help` command which will print subcommand helptext. (Defaults to `False`.)
