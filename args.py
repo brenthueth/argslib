@@ -62,6 +62,7 @@ class ArgParser:
 
     # Register a new command.
     def command(self, name, helptext=None, callback=None):
+        self.help_command = True
         cmd_parser = ArgParser(helptext)
         cmd_parser.callback = callback
         for alias in name.split():
@@ -192,13 +193,19 @@ class ArgParser:
                     if not option.try_append_value(value):
                         self.exit_error(f"invalid option value '{value}'")
                 else:
-                    self.exit_error(f"missing argument for '{char}' option in -{arg}")
+                    if len(arg) > 1:
+                        self.exit_error(f"missing argument for '{char}' option in -{arg}")
+                    else:
+                        self.exit_error(f"missing argument for -{arg} option")
             elif char == "h" and self.helptext is not None:
                 self.exit_help()
             elif char == "v" and self.version is not None:
                 self.exit_version()
             else:
-                self.exit_error(f"'{char}' in -{arg} is not a recognised flag or option name")
+                if len(arg) > 1:
+                    self.exit_error(f"'{char}' in -{arg} is not a recognised flag or option name")
+                else:
+                    self.exit_error(f"-{arg} is not a recognised flag or option name")
 
     # ------------------------------------------------------
     # Utility methods.
