@@ -80,4 +80,6 @@ title: API Reference
 
 [[ `.help_command` ]]
 
-    If set to `True`, activates support for an automatic `help` command which will print subcommand helptext. (Defaults to `False`.)
+    Boolean switch; activates support for an automatic `help` command which prints subcommand helptext.
+    (Defaults to `False` but gets toggled to `True` whenever a command is registered.)
+
