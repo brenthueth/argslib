@@ -11,7 +11,7 @@ from setuptools import setup
 
 setup(
     name = 'argslib',
-    version = '0.2.0',
+    version = '0.2.1',
     py_modules = ['args'],
     author = 'Darren Mulholland',
     url = 'https://github.com/dmulholl/argslib',
