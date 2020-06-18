@@ -6,51 +6,6 @@ class ArgParserError(Exception):
     pass
 
 
-# Internal class for storing option data.
-class Option:
-
-    def __init__(self, opt_type, def_value):
-        self.type = opt_type
-        self.default = def_value
-        self.values = []
-
-    @property
-    def value(self):
-        if self.values:
-            return self.values[-1]
-        else:
-            return self.default
-
-    def try_append_value(self, str_val):
-        try:
-            self.values.append(self.type(str_val))
-            return True
-        except:
-            return False
-
-
-# Internal class for storing flag data.
-class Flag:
-
-    def __init__(self):
-        self.count = 0
-
-
-# Internal class for making a list of arguments available as a stream.
-class ArgStream:
-
-    def __init__(self, args):
-        self.args = list(args)
-        self.index = 0
-
-    def next(self):
-        self.index += 1
-        return self.args[self.index - 1]
-
-    def has_next(self):
-        return self.index < len(self.args)
-
-
 # An ArgParser instance is responsible for registering options and commands
 # and parsing the input stream of raw arguments.
 class ArgParser:
@@ -85,6 +40,9 @@ class ArgParser:
 
         # Stores a command parser's callback function.
         self.callback = None
+
+        # If true, activates the 'help' commmand.
+        self.help_command = False
 
     # ------------------------------------------------------
     # Setup methods.
@@ -181,7 +139,7 @@ class ArgParser:
                 if self.command_parser.callback:
                     self.command_parser.callback(arg, self.command_parser)
 
-            elif is_first_arg and arg == "help":
+            elif is_first_arg and self.help_command and arg == "help":
                 if stream.has_next():
                     name = stream.next()
                     if name in self.commands:
@@ -292,4 +250,49 @@ class ArgParser:
     # Print a message to stderr and exit with a non-zero status.
     def exit_error(self, msg):
         sys.exit(f"Error: {msg}.")
+
+
+# Internal class for storing option data.
+class Option:
+
+    def __init__(self, opt_type, def_value):
+        self.type = opt_type
+        self.default = def_value
+        self.values = []
+
+    @property
+    def value(self):
+        if self.values:
+            return self.values[-1]
+        else:
+            return self.default
+
+    def try_append_value(self, str_val):
+        try:
+            self.values.append(self.type(str_val))
+            return True
+        except:
+            return False
+
+
+# Internal class for storing flag data.
+class Flag:
+
+    def __init__(self):
+        self.count = 0
+
+
+# Internal class for making a list of arguments available as a stream.
+class ArgStream:
+
+    def __init__(self, args):
+        self.args = list(args)
+        self.index = 0
+
+    def next(self):
+        self.index += 1
+        return self.args[self.index - 1]
+
+    def has_next(self):
+        return self.index < len(self.args)
 
